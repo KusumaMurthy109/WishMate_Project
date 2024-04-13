@@ -11,8 +11,17 @@ from kivy.properties import ObjectProperty
 from kivy.lang import Builder 
 from kivy.uix.popup import Popup 
 from kivy.uix.floatlayout import FloatLayout 
+from kivy.utils import get_color_from_hex
 import pandas as pd 
 import csv
+
+import pymongo
+from profiledb import ProfileDB
+from wishlistdb import WishlistDB 
+
+profile_db = ProfileDB()
+wishlist_db = WishlistDB()
+
 # class to call the popup function 
 class PopupWindow(Widget): 
     def btn(self): 
@@ -34,11 +43,14 @@ global_var1 = []
 class loginWindow(Screen): 
     email = ObjectProperty(None) 
     pwd = ObjectProperty(None) 
+    button = ObjectProperty(None)
+    cancolor = get_color_from_hex('#ECA1E7')
     def validate(self):
-  
-        # validating if the email already exists  
-        if self.email.text not in users['Email'].unique(): 
+
+        #Checks to see if user is in the database (if they made an account)
+        if profile_db.userLogin(self.email.text, self.pwd.text) is False:
             popContent()
+
         else:
   
             # switching the current screen to display validation result 
@@ -48,10 +60,20 @@ class loginWindow(Screen):
             # reset TextInput widget 
             self.email.text = "" 
             self.pwd.text = "" 
+            
+    def togglevisibility(self):
+        if self.pwd.password == True:
+            self.pwd.password = False
+            self.button.text = "Hide"
+        elif self.pwd.password == False:
+            self.pwd.password = True
+            self.button.text = "Show"
+
   
   
 # class to accept sign up info   
-class signupWindow(Screen): 
+class signupWindow(Screen):
+
     first_name2 = ObjectProperty(None)
     last_name2 = ObjectProperty(None) 
     email = ObjectProperty(None)
@@ -59,9 +81,13 @@ class signupWindow(Screen):
     pwd = ObjectProperty(None) 
     def signupbtn(self): 
   
-        # creating a DataFrame of the info 
+        # creating a DataFrame of the info
         user = pd.DataFrame([[self.first_name2.text, self.last_name2.text, self.email.text, self.zipcode.text, self.pwd.text, "Empty"]], 
-                            columns = ['First Name', 'Last Name', 'Email', 'Zipcode', 'Password', 'WishList']) 
+                            columns = ['First Name', 'Last Name', 'Email', 'Zipcode', 'Password', 'WishList'])
+        
+        #Adds profile to database
+        profile_db.createAccount(self.email.text, self.pwd.text, self.first_name2.text, self.last_name2.text, self.zipcode.text)
+
         if self.email.text != "": 
             if self.email.text not in users['Email'].unique(): 
   
@@ -99,7 +125,18 @@ class wishListWindow(Screen):
     '''
 class createWishWindow(Screen):
     wishlist_input = ObjectProperty(None)
+    wishlist_name = ObjectProperty(None)
     def save_wishlist(self):
+
+        
+        user_email = global_var1[0]
+        wishlist_db.createWishlist(user_email, self.wishlist_name.text) #creates a new wishlist (name cannot duplicate within a user)
+
+        wishlist = self.wishlist_input.text
+        items = wishlist.split("\n")
+        
+        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #adds items to the wishlist
+
         i=0
         df = pd.read_csv("login.csv")
         wishlist = self.wishlist_input.text

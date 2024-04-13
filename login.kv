@@ -9,7 +9,8 @@ windowManager:
 # GUI for the login window 
 <loginWindow>: 
     email : email 
-    pwd : pwd 
+    pwd : pwd
+    button : button
     FloatLayout: 
         size: root.width, root.height 
         Label: 
@@ -31,6 +32,21 @@ windowManager:
             size_hint : 0.3, 0.1
             pos_hint : {"x" : 0.45, "top" : 0.7} 
             password: True
+            background_color: 0,0,0,0
+            canvas.before:
+                Color:
+                    rgba: root.cancolor
+                Line:
+                    width: 2
+                    rectangle: pwd.pos[0], pwd.pos[1], pwd.width, pwd.height
+
+
+        Button: 
+            id : button
+            text : "Show"
+            size_hint : 0.1, 0.05
+            pos_hint : {"x" : 0.63, "center_y" : 0.65}
+            on_press: root.togglevisibility()
         Button: 
             text : "Create an account"
             size_hint : 0.4, 0.1
@@ -160,6 +176,7 @@ windowManager:
 <createWishWindow>: 
     info : info
     wishlist_input : wishlist_input 
+    wishlist_name : wishlist_name 
     FloatLayout: 
         Label: 
             id : info 
@@ -167,14 +184,23 @@ windowManager:
             pos_hint : {"x" : 0.15, "top" : 0.8} 
             text : "Wish List Page!"
         Label: 
+            text : "Enter Wish List Name: "
+            size_hint : 0.2, 0.1
+            pos_hint : {"x":0.25, "top":0.8} 
+        TextInput: 
+            id : wishlist_name 
+            multiline : False
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.8}
+        Label: 
             text : "Enter Wish List: "
             size_hint : 0.2, 0.1
-            pos_hint : {"x":0.25, "top":0.9} 
+            pos_hint : {"x":0.25, "top":0.7} 
         TextInput: 
             id : wishlist_input 
             multiline : True
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.9}
+            pos_hint : {"x" : 0.45, "top" : 0.7}
         Button: 
             text : "SUBMIT"
             size_hint : 0.3, 0.1
