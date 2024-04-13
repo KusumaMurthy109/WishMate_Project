@@ -1,5 +1,4 @@
 import pymongo
-from bson import ObjectId
 from profiledb import ProfileDB
 from wishlistdb import WishlistDB 
 
@@ -87,12 +86,7 @@ def main():
         
         #Find public wishlists in the same area.
         elif user_choice == 5:
-            collection_name = "Users"
-            collection = profile_db.get_collection("Users")
-            document_id = ObjectId(username)
-            document = collection.find_one({"_id": document_id})
-            zipcode = document.get({"Zipcode"})
-            print(zipcode)
+            wishlist_db.wishlistNearMe(username)
 
         #Exists program.
         elif user_choice == 6:

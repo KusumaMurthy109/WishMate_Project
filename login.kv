@@ -222,7 +222,14 @@
                 app.root.current = 'printwishlist'
                 root.manager.transition.direction = "right"
         
-  
+<printWishWindow>:
+    FloatLayout: 
+        Label: 
+            id : info 
+            size_hint : 0.8, 0.2
+            pos_hint : {"x" : 0.15, "top" : 0.95} 
+            text : "Your WishLists"
+    
   
 # GUI for pop up window 
 <P>: 
