@@ -38,18 +38,25 @@ class WishlistDB:
     #WishMate_Wishlists Database
     def addItems(self, username, existing_wishlist, items):
         if self.findUser(username):
-            self.userCol.update_one({"_id": existing_wishlist},
-                                {"$push": {"Items": {"$each": items}}})
-        
+            self.userCol = self._wishlist_db[username]
+            if self.userCol.update_one({"_id": existing_wishlist},
+                                       {"$push": {"Items": {"$each": items}}}):
+                print("Items added successfully.")
+            else:
+                print("Failed to add items.")
+        else:
+            print("User not found.")
     
     #WishMate_Wishlists Database
     def removeItem(self, username, existing_wishlist, item):
         if self.findUser(username):
+            self.userCol = self._wishlist_db[username]
             self.userCol.update_one({"_id": existing_wishlist},
                                 {"$pull": {"Items": item}})
     
     #WishMate_Wishlists Database
     def showWishlist(self, username, existing_wishlist):
+        self.userCol = self._wishlist_db[username]
         if self.findUser(username):
             cursor = self.userCol.find({"_id": existing_wishlist})
             print(f"\n{existing_wishlist}:")
