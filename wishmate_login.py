@@ -15,6 +15,14 @@ from kivy.utils import get_color_from_hex
 from kivy.core.window import Window
 import pandas as pd 
 import csv
+import subprocess
+from kivy.app import App
+from kivy.uix.boxlayout import BoxLayout
+from kivy.lang import Builder
+from rekognition import Rekognition
+from linksrecommender import LinksRecommender
+from readfile import ReadFile
+
 
 import pymongo
 from profiledb import ProfileDB
@@ -221,45 +229,185 @@ class wordWindow(Screen):
         self.wishlist_name.text = ""
 class uploadWindow(Screen): 
     wishlist_name = ObjectProperty(None)
+    def option_selected(self, option):
+        if option == 'c':
+            self.capture_image()
+        elif option == 'u':
+            self.upload_image()
+
+    def capture_image(self):
+        self.r = Rekognition()
+        # Your capture logic here
+        r = self.r
+        r.camera()
+        file_path = "images"
+        s3 = "s3://hack-ku-2024/"
+
+        instruction = f"aws s3 cp {file_path} {s3} --recursive"
+        subprocess.run(instruction, shell=True)
+
+        camera_wishlist_path = "camera_wishlist.txt"
+        with open(camera_wishlist_path, "w") as camera_wishlist:
+            photo = 'image1.png'
+            bucket = 'hack-ku-2024'
+            result = self.r.image_lable_recognizer(photo, bucket)
+            camera_wishlist.write(','.join(result))
+        camera_wishlist.close()
+    
+        lr = LinksRecommender()
+
+        read_file = ReadFile()
+
+        word_list = read_file.read('camera_wishlist.txt')
+
+
+
+        link_n_wishlist = open("link_n_wishlist.txt", "w")
+
+        for word in word_list:
+            links = lr.links(word)
+
+            link_n_wishlist.write(word)
+            link_n_wishlist.write("\n")
+            for link in links:
+                link_n_wishlist.write(link)
+                link_n_wishlist.write("\n")
+            
+            link_n_wishlist.write("\n")
+        
+        link_n_wishlist.close()
+
+    def upload_image(self):
+        self.r = Rekognition()
+        # Your upload logic here
+        file_path = "images"
+        s3 = "s3://hack-ku-2024/"
+
+        instruction = f"aws s3 cp {file_path} {s3} --recursive"
+        subprocess.run(instruction, shell=True)
+
+        camera_wishlist_path = "camera_wishlist.txt"
+        with open(camera_wishlist_path, "w") as camera_wishlist:
+            photo = 'jeacket.png'
+            bucket = 'hack-ku-2024'
+            result = self.r.image_lable_recognizer(photo, bucket)
+            camera_wishlist.write(','.join(result))
+        camera_wishlist.close()
+    
+        lr = LinksRecommender()
+
+        read_file = ReadFile()
+
+        word_list = read_file.read('camera_wishlist.txt')
+
+
+
+        link_n_wishlist = open("link_n_wishlist.txt", "w")
+
+        for word in word_list:
+            links = lr.links(word)
+
+            link_n_wishlist.write(word)
+            link_n_wishlist.write("\n")
+            for link in links:
+                link_n_wishlist.write(link)
+                link_n_wishlist.write("\n")
+            
+            link_n_wishlist.write("\n")
+        
+        link_n_wishlist.close()
 class cameraWindow(Screen): 
     wishlist_input_pic = ObjectProperty(None)
     wishlist_name = ObjectProperty(None)
-    def save_wishlist(self):
+    wishlist_name = ObjectProperty(None)
+    def option_selected(self, option):
+        if option == 'c':
+            self.capture_image()
+        elif option == 'u':
+            self.upload_image()
 
-        user_email = global_var1[0]
-        wishlist_db.createWishlist(user_email, self.wishlist_name.text) #creates a new wishlist (name cannot duplicate within a user)
+    def capture_image(self):
+        self.r = Rekognition()
+        # Your capture logic here
+        r = self.r
+        r.camera()
+        file_path = "images"
+        s3 = "s3://hack-ku-2024/"
 
-        wishlist = self.wishlist_input.text
-        items = wishlist.split("\n")
+        instruction = f"aws s3 cp {file_path} {s3} --recursive"
+        subprocess.run(instruction, shell=True)
+
+        camera_wishlist_path = "camera_wishlist.txt"
+        with open(camera_wishlist_path, "w") as camera_wishlist:
+            photo = 'image1.png'
+            bucket = 'hack-ku-2024'
+            result = self.r.image_lable_recognizer(photo, bucket)
+            camera_wishlist.write(','.join(result))
+        camera_wishlist.close()
+    
+        lr = LinksRecommender()
+
+        read_file = ReadFile()
+
+        word_list = read_file.read('camera_wishlist.txt')
+
+
+
+        link_n_wishlist = open("link_n_wishlist.txt", "w")
+
+        for word in word_list:
+            links = lr.links(word)
+
+            link_n_wishlist.write(word)
+            link_n_wishlist.write("\n")
+            for link in links:
+                link_n_wishlist.write(link)
+                link_n_wishlist.write("\n")
+            
+            link_n_wishlist.write("\n")
         
-        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #adds items to the wishlist
+        link_n_wishlist.close()
 
-        i=0
-        df = pd.read_csv("login.csv")
-        wishlist = self.wishlist_input.text
-        with open('login.csv', 'r+') as file:
-            reader = csv.DictReader(file)
-            rows = list(reader)
-            for row in rows:
-                if row['Email'] == global_var1[0]:
-                    value = i
-                    break
-                i+=1
-        df.loc[value, 'WishList'] = wishlist
-        df.to_csv("login.csv", index=False)
+    def upload_image(self):
+        self.r = Rekognition()
+        # Your upload logic here
+        file_path = "images"
+        s3 = "s3://hack-ku-2024/"
 
-        # Clear the wishlist input after saving
-        self.wishlist_input.text = ""
-        self.wishlist_name.text = ""
+        instruction = f"aws s3 cp {file_path} {s3} --recursive"
+        subprocess.run(instruction, shell=True)
 
-    def update_wishlist(self):
-        user_email = global_var1[0]
-        wishlist = self.wishlist_input.text
-        items = wishlist.split("\n")
-        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #updates items to the wishlist
-        # Clear the wishlist input after saving
-        self.wishlist_input.text = ""
-        self.wishlist_name.text = ""
+        camera_wishlist_path = "camera_wishlist.txt"
+        with open(camera_wishlist_path, "w") as camera_wishlist:
+            photo = 'jeacket.png'
+            bucket = 'hack-ku-2024'
+            result = self.r.image_lable_recognizer(photo, bucket)
+            camera_wishlist.write(','.join(result))
+        camera_wishlist.close()
+    
+        lr = LinksRecommender()
+
+        read_file = ReadFile()
+
+        word_list = read_file.read('camera_wishlist.txt')
+
+
+
+        link_n_wishlist = open("link_n_wishlist.txt", "w")
+
+        for word in word_list:
+            links = lr.links(word)
+
+            link_n_wishlist.write(word)
+            link_n_wishlist.write("\n")
+            for link in links:
+                link_n_wishlist.write(link)
+                link_n_wishlist.write("\n")
+            
+            link_n_wishlist.write("\n")
+        
+        link_n_wishlist.close()
+    
 
   
 # class for managing screens 
