@@ -3,6 +3,9 @@ import pymongo
 class WishlistDB:
 
     def __init__(self):
+        '''
+        Define member variables.
+        '''
         self._client = pymongo.MongoClient("mongodb+srv://annalin260:12345@cluster0.rtdi4fq.mongodb.net/")
         self._wishlist_db = self._client["WishMate_Wishlists"]
         self._profiledb = self._client["WishMate_Profiles"]
