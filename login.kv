@@ -314,6 +314,7 @@
             size_hint : 0.8, 0.2
             pos_hint : {"x" : 0.15, "top" : 0.95} 
             text : "Wishlists Near You"
+'''
 <printWishWindow>:
     FloatLayout: 
         Label: 
@@ -321,7 +322,17 @@
             size_hint : 0.8, 0.2
             pos_hint : {"x" : 0.15, "top" : 0.95} 
             text : "Your WishList"
-    
+'''
+<printWishWindow>:
+    FloatLayout:
+        Label:
+            id: wishlist_label
+            size_hint: 0.8, 0.7
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            text: ""
+            text_size: self.size
+            halign: 'center'
+            valign: 'middle'
   
 # GUI for pop up window 
 <P>: 

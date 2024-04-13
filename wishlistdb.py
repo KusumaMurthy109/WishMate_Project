@@ -52,6 +52,30 @@ class WishlistDB:
     
     #WishMate_Wishlists Database
     def showWishlist(self, username):
+        wishlist_items = []
+
+        # Check if the user exists in the database
+        if self.findUser(username):
+            # Fetch the wishlist collection for the user
+            user_collection = self._wishlist_db.get_collection(username)
+
+            # If the collection exists
+            if user_collection is not None:
+                # Find all documents in the collection
+                for doc in user_collection.find():
+                    # Get the wishlist name
+                    wishlist_name = doc.get("_id")
+
+                    # Get the items for the wishlist
+                    items = doc.get("Items", [])
+
+                    # Add each item to the wishlist_items list
+                    for item in items:
+                        wishlist_items.append(item)
+
+        return wishlist_items
+
+        '''
         self.useridCol = self._wishlist_db[username]
         if self.findUser(username):
 
@@ -60,16 +84,17 @@ class WishlistDB:
                 wishlist_name = doc.get("_id")
 
                 cursor = self.useridCol.find({"_id": wishlist_name})
-                #print(f"\n{wishlist_name}:")
-                name = wishlist_name
-                item_list = []
+                print(f"\n{wishlist_name}:")
+                #name = wishlist_name
+                #item_list = []
                 for document in cursor:
                     items = document.get("Items", [])
                     for item in items:
-                        #print(f"- {item}")
-                        item_list.append(item)
-                item_string = ",".join(item_list)
-                #print('')
+                        print(f"- {item}")
+                        #item_list.append(item)
+                #item_string = ",".join(item_list)
+                print('')
+        '''
 
     #WishMate_Wishlists Database
     def wishlistNearMe(self, username):
