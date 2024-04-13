@@ -179,31 +179,39 @@
 
 <createWishWindow>: 
     info : info
-    wishlist_input : wishlist_input 
-    wishlist_input_file : wishlist_input_file
-    wishlist_name : wishlist_name 
     FloatLayout: 
         Label: 
             id : info 
             size_hint : 0.8, 0.2
             pos_hint : {"x" : 0.15, "top" : 0.95} 
             text : "Which option would you like to use to create a wishlist?"
-        Button: 
+        TestButton: 
             text : "Enter List of Items"
             size_hint : 0.3, 0.1
             pos_hint : {"x" : 0.50, "top" : 0.25} 
             on_press : 
-                app.root.current = 'printwishlist'
+                app.root.current = 'wishlistwords'
                 root.manager.transition.direction = "right"
-        Button: 
-            text : "Submit"
+        TestButton: 
+            text : "Upload Picture"
             size_hint : 0.3, 0.1
             pos_hint : {"x" : 0.50, "top" : 0.35} 
             on_press : 
                 root.save_wishlist() 
-                app.root.current = 'printwishlist'
+                app.root.current = 'uploadpic'
                 root.manager.transition.direction = "right"
-        '''
+        TestButton: 
+            text : "Take Picture"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.50, "top" : 0.45} 
+            on_press : 
+                root.save_wishlist() 
+                app.root.current = 'takepic'
+                root.manager.transition.direction = "right"
+<wordWindow>:
+    wishlist_input : wishlist_input
+    wishlist_name : wishlist_name
+    FloatLayout: 
         Label: 
             size_hint : 0.2, 0.1
             pos_hint : {"x":0.25, "top":0.8} 
@@ -222,15 +230,6 @@
             multiline : True
             size_hint : 0.3, 0.1
             pos_hint : {"x" : 0.25, "top" : 0.68}
-        Label: 
-            size_hint : 0.2, 0.1
-            pos_hint : {"x":0.7, "top":0.6} 
-        TextInput: 
-            id : wishlist_input_file 
-            hint_text : "If you want to upload a file, type 'u'. If you want to take a picture, type 'c'. "
-            multiline : False
-            size_hint : 0.6, 0.1
-            pos_hint : {"x" : 0.25, "top" : 0.57}
         
         Button: 
             text : "Update"
@@ -248,8 +247,37 @@
                 root.save_wishlist() 
                 app.root.current = 'printwishlist'
                 root.manager.transition.direction = "right"
-        '''
-        
+        Button: 
+            text : "Back"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.1, "top" : 0.1} 
+            on_press : 
+                app.root.current = 'createwish'
+                root.manager.transition.direction = "left"
+
+<uploadWindow>:
+    wishlist_name : wishlist_name
+    FloatLayout: 
+        Label: 
+            size_hint : 0.2, 0.1
+            pos_hint : {"x":0.25, "top":0.8} 
+        TextInput: 
+            id : wishlist_name 
+            hint_text : "Enter Wish List Name: "
+            multiline : False
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.45, "top" : 0.8}
+        Button: 
+            text : "Back"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.1, "top" : 0.1} 
+            on_press : 
+                app.root.current = 'createwish'
+                root.manager.transition.direction = "left"
+
+    
+
+<cameraWindow>:
 <othersWishWindow>:
     FloatLayout: 
         Label: 

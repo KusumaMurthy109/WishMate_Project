@@ -172,16 +172,139 @@ class othersWishWindow(Screen):
 # This class is to view the wishlists of your profile.
 class printWishWindow(Screen):
     #Print my wishlist
-    wishlist_db.showWishlist(global_var1[0])
+    #wishlist_db.showWishlist(global_var1[0])
     pass
 
 # class to display validation result 
 class logDataWindow(Screen): 
     pass
+
+
+class wordWindow(Screen): 
+    wishlist_input = ObjectProperty(None)
+    wishlist_name = ObjectProperty(None)
+    def save_wishlist(self):
+
+        user_email = global_var1[0]
+        wishlist_db.createWishlist(user_email, self.wishlist_name.text) #creates a new wishlist (name cannot duplicate within a user)
+
+        wishlist = self.wishlist_input.text
+        items = wishlist.split("\n")
+        
+        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #adds items to the wishlist
+
+        i=0
+        df = pd.read_csv("login.csv")
+        wishlist = self.wishlist_input.text
+        with open('login.csv', 'r+') as file:
+            reader = csv.DictReader(file)
+            rows = list(reader)
+            for row in rows:
+                if row['Email'] == global_var1[0]:
+                    value = i
+                    break
+                i+=1
+        df.loc[value, 'WishList'] = wishlist
+        df.to_csv("login.csv", index=False)
+
+        # Clear the wishlist input after saving
+        self.wishlist_input.text = ""
+        self.wishlist_name.text = ""
+
+    def update_wishlist(self):
+        user_email = global_var1[0]
+        wishlist = self.wishlist_input.text
+        items = wishlist.split("\n")
+        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #updates items to the wishlist
+        # Clear the wishlist input after saving
+        self.wishlist_input.text = ""
+        self.wishlist_name.text = ""
+class uploadWindow(Screen): 
+    wishlist_input_file = ObjectProperty(None)
+    wishlist_name = ObjectProperty(None)
+    def save_wishlist(self):
+
+        user_email = global_var1[0]
+        wishlist_db.createWishlist(user_email, self.wishlist_name.text) #creates a new wishlist (name cannot duplicate within a user)
+
+        wishlist = self.wishlist_input.text
+        items = wishlist.split("\n")
+        
+        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #adds items to the wishlist
+
+        i=0
+        df = pd.read_csv("login.csv")
+        wishlist = self.wishlist_input.text
+        with open('login.csv', 'r+') as file:
+            reader = csv.DictReader(file)
+            rows = list(reader)
+            for row in rows:
+                if row['Email'] == global_var1[0]:
+                    value = i
+                    break
+                i+=1
+        df.loc[value, 'WishList'] = wishlist
+        df.to_csv("login.csv", index=False)
+
+        # Clear the wishlist input after saving
+        self.wishlist_input.text = ""
+        self.wishlist_name.text = ""
+
+    def update_wishlist(self):
+        user_email = global_var1[0]
+        wishlist = self.wishlist_input.text
+        items = wishlist.split("\n")
+        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #updates items to the wishlist
+        # Clear the wishlist input after saving
+        self.wishlist_input.text = ""
+        self.wishlist_name.text = ""
+class cameraWindow(Screen): 
+    wishlist_input_pic = ObjectProperty(None)
+    wishlist_name = ObjectProperty(None)
+    def save_wishlist(self):
+
+        user_email = global_var1[0]
+        wishlist_db.createWishlist(user_email, self.wishlist_name.text) #creates a new wishlist (name cannot duplicate within a user)
+
+        wishlist = self.wishlist_input.text
+        items = wishlist.split("\n")
+        
+        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #adds items to the wishlist
+
+        i=0
+        df = pd.read_csv("login.csv")
+        wishlist = self.wishlist_input.text
+        with open('login.csv', 'r+') as file:
+            reader = csv.DictReader(file)
+            rows = list(reader)
+            for row in rows:
+                if row['Email'] == global_var1[0]:
+                    value = i
+                    break
+                i+=1
+        df.loc[value, 'WishList'] = wishlist
+        df.to_csv("login.csv", index=False)
+
+        # Clear the wishlist input after saving
+        self.wishlist_input.text = ""
+        self.wishlist_name.text = ""
+
+    def update_wishlist(self):
+        user_email = global_var1[0]
+        wishlist = self.wishlist_input.text
+        items = wishlist.split("\n")
+        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #updates items to the wishlist
+        # Clear the wishlist input after saving
+        self.wishlist_input.text = ""
+        self.wishlist_name.text = ""
+
   
 # class for managing screens 
 class windowManager(ScreenManager): 
     pass
+
+
+
   
 # kv file 
 kv = Builder.load_file('login.kv') 
@@ -197,7 +320,11 @@ sm.add_widget(logDataWindow(name='logdata'))
 sm.add_widget(wishListWindow(name='wishlistdata')) 
 sm.add_widget(createWishWindow(name='createwish'))
 sm.add_widget(printWishWindow(name='printwishlist'))
-sm.add_widget(othersWishWindow(name='wishlistnearme')) 
+sm.add_widget(othersWishWindow(name='wishlistnearme'))
+
+sm.add_widget(wordWindow(name='wishlistwords'))
+sm.add_widget(uploadWindow(name='uploadpic'))
+sm.add_widget(cameraWindow(name='takepic')) 
   
 # class that builds gui 
 class loginMain(App): 
