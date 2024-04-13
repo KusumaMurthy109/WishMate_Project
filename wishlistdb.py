@@ -60,12 +60,16 @@ class WishlistDB:
                 wishlist_name = doc.get("_id")
 
                 cursor = self.useridCol.find({"_id": wishlist_name})
-                print(f"\n{wishlist_name}:")
+                #print(f"\n{wishlist_name}:")
+                name = wishlist_name
+                item_list = []
                 for document in cursor:
                     items = document.get("Items", [])
                     for item in items:
-                        print(f"- {item}")
-                print('')
+                        #print(f"- {item}")
+                        item_list.append(item)
+                item_string = ",".join(item_list)
+                #print('')
 
     #WishMate_Wishlists Database
     def wishlistNearMe(self, username):
