@@ -1,1 +1,1 @@
-Coat,Overcoat,Jacket,Linen,Khaki
+Finger,Hand,Person,Adult,Man

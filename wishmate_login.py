@@ -179,9 +179,7 @@ class othersWishWindow(Screen):
 
 # This class is to view the wishlists of your profile.
 class printWishWindow(Screen):
-    def showList(self):
-        user_email = global_var1[0]
-        wishlist_db.showWishlist(user_email)
+    pass
 
 # class to display validation result 
 class logDataWindow(Screen): 
