@@ -81,8 +81,8 @@ def main():
 
         #Prints existing wishlist.
         elif user_choice == 4:
-            existing_wishlist = input("Existing Wishlist: ")
-            wishlist_db.showWishlist(username, existing_wishlist)
+            #existing_wishlist = input("Existing Wishlist: ")
+            wishlist_db.showWishlist(username)
         
         #Find public wishlists in the same area.
         elif user_choice == 5:

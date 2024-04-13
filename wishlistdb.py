@@ -51,16 +51,21 @@ class WishlistDB:
                                     {"$pull": {"Items": item}})
     
     #WishMate_Wishlists Database
-    def showWishlist(self, username, existing_wishlist):
+    def showWishlist(self, username):
         self.useridCol = self._wishlist_db[username]
         if self.findUser(username):
-            cursor = self.useridCol.find({"_id": existing_wishlist})
-            print(f"\n{existing_wishlist}:")
-            for document in cursor:
-                items = document.get("Items", [])
-                for item in items:
-                    print(f"- {item}")
-            print('')
+
+            #Finds all wishlists that user has in the database.
+            for doc in self._wishlist_db[username].find():
+                wishlist_name = doc.get("_id")
+
+                cursor = self.useridCol.find({"_id": wishlist_name})
+                print(f"\n{wishlist_name}:")
+                for document in cursor:
+                    items = document.get("Items", [])
+                    for item in items:
+                        print(f"- {item}")
+                print('')
 
     #WishMate_Wishlists Database
     def wishlistNearMe(self, username):
@@ -81,9 +86,7 @@ class WishlistDB:
             for user in user_list:
                 if (user in wishlist_col) and (user != username):
                     print(f"{user}'s Wishlist ------")
-                    for doc in self._wishlist_db[user].find():
-                        wishlist_name = doc.get("_id")
-                        self.showWishlist(user, wishlist_name)
+                    self.showWishlist(user)
 
         elif (len(user_list) == 1) and (user_list[0] == username):
             print("There are no wishlists near you.")

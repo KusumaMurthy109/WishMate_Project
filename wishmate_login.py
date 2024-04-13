@@ -126,6 +126,7 @@ class wishListWindow(Screen):
     '''
 class createWishWindow(Screen):
     wishlist_input = ObjectProperty(None)
+    wishlist_input_file = ObjectProperty(None)
     wishlist_name = ObjectProperty(None)
     def save_wishlist(self):
 
@@ -163,8 +164,17 @@ class createWishWindow(Screen):
         # Clear the wishlist input after saving
         self.wishlist_input.text = ""
         self.wishlist_name.text = ""
-class printWishWindow(Screen):
+
+# This class is to view wishlists near the user.
+class othersWishWindow(Screen):
     pass
+
+# This class is to view the wishlists of your profile.
+class printWishWindow(Screen):
+    #Print my wishlist
+    wishlist_db.showWishlist(global_var1[0])
+    pass
+
 # class to display validation result 
 class logDataWindow(Screen): 
     pass
@@ -186,7 +196,8 @@ sm.add_widget(signupWindow(name='signup'))
 sm.add_widget(logDataWindow(name='logdata')) 
 sm.add_widget(wishListWindow(name='wishlistdata')) 
 sm.add_widget(createWishWindow(name='createwish'))
-sm.add_widget(printWishWindow(name='printwishlist')) 
+sm.add_widget(printWishWindow(name='printwishlist'))
+sm.add_widget(othersWishWindow(name='wishlistnearme')) 
   
 # class that builds gui 
 class loginMain(App): 

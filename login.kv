@@ -169,24 +169,41 @@
             on_release:  
                 app.root.current = 'createwish'
                 root.manager.transition.direction = "left"
-        #Button: 
-        #    text : "View WishList"
-        #    size_hint : 0.3, 0.1
-        #    pos_hint : {"x" : 0.39, "top" : 0.2} 
-        #    on_release:  
-        #        root.validate() 
-        #        root.manager.transition.direction = "up"
+        TestButton: 
+            text : "View WishList Near You"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.39, "top" : 0.2} 
+            on_release:  
+                app.root.current = 'wishlistnearme'
+                root.manager.transition.direction = "up"
 
 <createWishWindow>: 
     info : info
     wishlist_input : wishlist_input 
+    wishlist_input_file : wishlist_input_file
     wishlist_name : wishlist_name 
     FloatLayout: 
         Label: 
             id : info 
             size_hint : 0.8, 0.2
             pos_hint : {"x" : 0.15, "top" : 0.95} 
-            text : "Wish List Page!"
+            text : "Which option would you like to use to create a wishlist?"
+        Button: 
+            text : "Enter List of Items"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.50, "top" : 0.25} 
+            on_press : 
+                app.root.current = 'printwishlist'
+                root.manager.transition.direction = "right"
+        Button: 
+            text : "Submit"
+            size_hint : 0.3, 0.1
+            pos_hint : {"x" : 0.50, "top" : 0.35} 
+            on_press : 
+                root.save_wishlist() 
+                app.root.current = 'printwishlist'
+                root.manager.transition.direction = "right"
+        '''
         Label: 
             size_hint : 0.2, 0.1
             pos_hint : {"x":0.25, "top":0.8} 
@@ -204,7 +221,17 @@
             hint_text : "Enter Wish List: "
             multiline : True
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.7}
+            pos_hint : {"x" : 0.25, "top" : 0.68}
+        Label: 
+            size_hint : 0.2, 0.1
+            pos_hint : {"x":0.7, "top":0.6} 
+        TextInput: 
+            id : wishlist_input_file 
+            hint_text : "If you want to upload a file, type 'u'. If you want to take a picture, type 'c'. "
+            multiline : False
+            size_hint : 0.6, 0.1
+            pos_hint : {"x" : 0.25, "top" : 0.57}
+        
         Button: 
             text : "Update"
             size_hint : 0.3, 0.1
@@ -221,14 +248,22 @@
                 root.save_wishlist() 
                 app.root.current = 'printwishlist'
                 root.manager.transition.direction = "right"
+        '''
         
+<othersWishWindow>:
+    FloatLayout: 
+        Label: 
+            id : info 
+            size_hint : 0.8, 0.2
+            pos_hint : {"x" : 0.15, "top" : 0.95} 
+            text : "Wishlists Near You"
 <printWishWindow>:
     FloatLayout: 
         Label: 
             id : info 
             size_hint : 0.8, 0.2
             pos_hint : {"x" : 0.15, "top" : 0.95} 
-            text : "Your WishLists"
+            text : "Your WishList"
     
   
 # GUI for pop up window 
