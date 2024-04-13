@@ -13,8 +13,6 @@ from kivy.uix.popup import Popup
 from kivy.uix.floatlayout import FloatLayout 
 import pandas as pd 
 import csv
-print("Hi")
-print("hola")
 # class to call the popup function 
 class PopupWindow(Widget): 
     def btn(self): 
