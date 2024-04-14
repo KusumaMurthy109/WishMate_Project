@@ -183,29 +183,41 @@
         Label: 
             id : info 
             size_hint : 0.8, 0.2
-            pos_hint : {"x" : 0.15, "top" : 0.95} 
+            pos_hint : {"center_x" : 0.5, "top" : 0.85} 
+            font_size: 50
             text : "Which option would you like to use to create a wishlist?"
         TestButton: 
             text : "Enter List of Items"
+            font_size: 50
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.50, "top" : 0.25} 
+            pos_hint : {"center_x": 0.5, "top": 0.6}
             on_press : 
                 app.root.current = 'wishlistwords'
                 root.manager.transition.direction = "right"
         TestButton: 
             text : "Upload Picture"
+            font_size: 50
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.50, "top" : 0.35} 
+            pos_hint : {"center_x": 0.5, "top": 0.45}
             on_press : 
                 app.root.current = 'uploadpic'
                 root.manager.transition.direction = "right"
         TestButton: 
             text : "Take Picture"
+            font_size: 50
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.50, "top" : 0.45} 
+            pos_hint : {"center_x": 0.5, "top": 0.3}
             on_press : 
                 app.root.current = 'takepic'
                 root.manager.transition.direction = "right"
+        #TestButton: 
+        #    text : "Back"
+        #    font_size: 50
+        #    size_hint : 0.3, 0.1
+        #    pos_hint : {"center_x": 0.5, "top": 0.3}
+        #    on_press : 
+        #        app.root.current = 'wishlistdata'
+                root.manager.transition.direction = "left"
 <wordWindow>:
     wishlist_input : wishlist_input
     wishlist_name : wishlist_name
@@ -316,6 +328,20 @@
             text : "Wishlists Near You"
 
 <printWishWindow>:
+    FloatLayout:
+        Label:
+            id : info
+            size_hint : 0.8, 0.2
+            pos_hint : {"x" : 0.15, "top" : 0.95}
+            text : "Your Wishlists"
+        Button:
+            text : "TXT"
+            size_hint : 0.05, 0.05
+            pos_hint : {"x" : 0.1, "top" : 0.1}
+            on_press :
+                root.open_file()
+                root.manager.transition.direction = "left"
+
   
 # GUI for pop up window 
 <P>: 

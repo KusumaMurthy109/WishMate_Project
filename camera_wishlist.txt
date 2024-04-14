@@ -1,1 +1,1 @@
-Finger,Hand,Person,Adult,Man
+Finger,Person,Photography,Portrait,Woman
