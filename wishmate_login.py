@@ -605,7 +605,7 @@ sm.add_widget(cameraWindow(name='takepic'))
  # class that builds gui
 class loginMain(App):
    def build(self):
-       Window.clearcolor = (187/255,154/255,154/255,1)
+       Window.clearcolor = (60/255,54/255,76/255,1)
        return sm
  # driver function
 loginMain().run()
