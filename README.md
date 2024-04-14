@@ -1,6 +1,6 @@
 **WishMate - HackKU 2024 Project**
 
-This is a project created for HackKU 2024, created by Kusuma Murthy, Sophia Jacob, and Anna Lin.
+This project is created for HackKU 2024, made by Kusuma Murthy, Sophia Jacob, and Anna Lin.
 
 WishMate has been created to serve various non-profit organizations and charitable drives to create a seamless flow between the volunteers and the organizers. WishMate is an app that allows an organizer to create different wishlists for drives like a food drive or a Toys for Tots Drive. Volunteers can then sign up and log in to the App to view drives and wishlists happening near them.
 
