@@ -1,0 +1,55 @@
+
+Food:
+- bread
+- candy
+- chips
+- water
+
+
+Back to School:
+- pen
+- paper
+
+
+Snacks:
+- chips
+- chocolate
+- lollipop
+
+
+Computer:
+- pc
+
+
+Wish1:
+- happy
+- https://maps.google.com/maps%3Fq%3DFinger%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111: https://maps.google.com/maps%3Fq%3DFinger%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111, /search%3Fq%3DFinger%26sca_esv%3Dc7802b73217d3430%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111, https://en.wikipedia.org/wiki/Finger, https://en.wikipedia.org/wiki/Finger_(disambiguation)
+- : , Hand, https://maps.google.com/maps%3Fq%3DHand%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111, /search%3Fq%3DHand%26sca_esv%3Dc7802b73217d3430%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111
+- https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DHand%26hl%3Den: https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DHand%26hl%3Den, , Person, https://maps.google.com/maps%3Fq%3DPerson%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111
+- https://en.wikipedia.org/wiki/Person: https://en.wikipedia.org/wiki/Person, https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DPerson%26hl%3Den, , Adult
+- /search%3Fq%3DAdult%26sca_esv%3Dc7802b73217d3430%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111: /search%3Fq%3DAdult%26sca_esv%3Dc7802b73217d3430%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111, https://en.wikipedia.org/wiki/Adult, https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DAdult%26hl%3Den, 
+- https://maps.google.com/maps%3Fq%3DMan%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111: https://maps.google.com/maps%3Fq%3DMan%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111, /search%3Fq%3DMan%26sca_esv%3Dc7802b73217d3430%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111, https://en.wikipedia.org/wiki/Man, https://en.wikipedia.org/wiki/Man_(word)
+- https://en.wikipedia.org/wiki/Man: https://en.wikipedia.org/wiki/Man, https://en.wikipedia.org/wiki/Man_(word), https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DMan%26hl%3Den, 
+- : , , , 
+- 'Coat':  '/search%3Fq%3DCoat%26sca_esv%3D28c98b8f352da956%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111',  'https://maps.google.com/maps%3Fq%3DCoat%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111',  'https://en.wikipedia.org/wiki/Coat'
+- 'Overcoat':  '/search%3Fq%3DOvercoat%26sca_esv%3D28c98b8f352da956%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111',  'https://maps.google.com/maps%3Fq%3DOvercoat%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111',  'https://en.wikipedia.org/wiki/Overcoat'
+- 'Jacket':  '/search%3Fq%3DJacket%26sca_esv%3D28c98b8f352da956%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111',  'https://maps.google.com/maps%3Fq%3DJacket%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111',  'https://www.amazon.com/Mens-Jackets/b%3Fie%3DUTF8%26node%3D1045830'
+- 'Linen':  'https://maps.google.com/maps%3Fq%3DLinen%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111',  '/search%3Fq%3DLinen%26sca_esv%3D28c98b8f352da956%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111',  'https://en.wikipedia.org/wiki/Linen'
+- 'Khaki':  'https://maps.google.com/maps%3Fq%3DKhaki%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111',  '/search%3Fq%3DKhaki%26sca_esv%3D28c98b8f352da956%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111',  'https://en.wikipedia.org/wiki/Khaki'
+- bleh
+
+
+Wish4:
+- chicken
+- fish
+
+
+Wish2:
+- water
+
+
+SubmitWishList:
+- wishes
+- are
+- fun
+
