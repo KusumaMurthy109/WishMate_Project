@@ -181,22 +181,76 @@ class createWishWindow(Screen):
 
 # This class is to view wishlists near the user.
 class othersWishWindow(Screen):
-   def open_file(self):
-       wishlist_db.wishlistNearMe(global_var1[0])
+    def __init__(self, **kwargs):
+        super(othersWishWindow, self).__init__(**kwargs)
+        self.layout = BoxLayout(orientation='vertical')  # Create a vertical box layout
+
+        # Create a button
+        button = Button(text='Load Data', size_hint=(None, None), size=(300, 50),
+                        pos_hint={'center_x': 0.5, 'y': 0.90})
+        button.bind(on_press=self.load_data)  # Bind the button press to load_data method
+        self.layout.add_widget(button)  # Add the button to the layout
+
+        # Spacer to push the button to the top
+        self.layout.add_widget(Label())
+
+        self.label_container = BoxLayout(orientation='vertical', padding=(50, 0, 0, 0))  # Create a container for labels with left indentation
+        self.layout.add_widget(self.label_container)  # Add the label container to the layout
+
+        self.add_widget(self.layout)
+
+    def load_data(self, instance):
+        wishlist_db.wishlistNearMe(global_var1[0])
+        # Clear previous labels
+        self.label_container.clear_widgets()
+
+        # Open and read the data file
+        try:
+            with open("wishlistsnearme.txt", 'r') as file:
+                for line in file:
+                    label = Label(text=line.strip(), font_size=30, size_hint_y=None, height=200)  # Set fixed height for each label
+                    self.label_container.add_widget(label)  # Add each label to the container
+        except FileNotFoundError:
+            label = Label(text="File not found!", font_size=30, size_hint_y=None, height=50)
+            self.label_container.add_widget(label)
+
 
 
 # This class is to view the wishlists of your profile.
 class printWishWindow(Screen):
-   def open_file(self):
-       wishlist_db.showWishlist(global_var1[0])
-       label_height = 50  # Height of each label
-       current_y = 0.9  # Initial y-position adjusted to center vertically
-       for line in open("mywishlist.txt", "r"):
-           text = line.strip()
-           label = Label(text=text, font_size=30, size=(0.8, label_height))
-           label.pos_hint = {"center_x": 0.5, "top": current_y}
-           self.ids.info.add_widget(label)
-           current_y -= 0.3  # Adjust y-position for the next label based on label height
+    def __init__(self, **kwargs):
+        super(printWishWindow, self).__init__(**kwargs)
+        self.layout = BoxLayout(orientation='vertical')  # Create a vertical box layout
+
+        # Create a button
+        button = Button(text='Load Data', size_hint=(None, None), size=(300, 50),
+                        pos_hint={'center_x': 0.5, 'y': 0.90})
+        button.bind(on_press=self.load_data)  # Bind the button press to load_data method
+        self.layout.add_widget(button)  # Add the button to the layout
+
+        # Spacer to push the button to the top
+        self.layout.add_widget(Label())
+
+        self.label_container = BoxLayout(orientation='vertical', padding=(50, 0, 0, 0))  # Create a container for labels with left indentation
+        self.layout.add_widget(self.label_container)  # Add the label container to the layout
+
+        self.add_widget(self.layout)
+
+    def load_data(self, instance):
+        wishlist_db.showWishlist(global_var1[0])
+        # Clear previous labels
+        self.label_container.clear_widgets()
+
+        # Open and read the data file
+        try:
+            with open("mywishlist.txt", 'r') as file:
+                for line in file:
+                    label = Label(text=line.strip(), font_size=30, size_hint_y=None, height=200)  # Set fixed height for each label
+                    self.label_container.add_widget(label)  # Add each label to the container
+        except FileNotFoundError:
+            label = Label(text="File not found!", font_size=30, size_hint_y=None, height=50)
+            self.label_container.add_widget(label)
+
 
 
 
@@ -227,22 +281,6 @@ class wordWindow(Screen):
       
        wishlist_db.addItems(user_email, self.wishlist_name.text, items) #adds items to the wishlist
 
-
-       i=0
-       df = pd.read_csv("login.csv")
-       wishlist = self.wishlist_input.text
-       with open('login.csv', 'r+') as file:
-           reader = csv.DictReader(file)
-           rows = list(reader)
-           for row in rows:
-               if row['Email'] == global_var1[0]:
-                   value = i
-                   break
-               i+=1
-       df.loc[value, 'WishList'] = wishlist
-       df.to_csv("login.csv", index=False)
-
-
        # Clear the wishlist input after saving
        self.wishlist_input.text = ""
        self.wishlist_name.text = ""
@@ -256,6 +294,7 @@ class wordWindow(Screen):
        # Clear the wishlist input after saving
        self.wishlist_input.text = ""
        self.wishlist_name.text = ""
+       
 class uploadWindow(Screen):
    wishlist_name = ObjectProperty(None)
    def option_selected(self, option):
@@ -301,22 +340,19 @@ class uploadWindow(Screen):
 
        link_n_wishlist = open("link_n_wishlist.txt", "w")
 
-
+       big_list = []
        for word in word_list:
            links = lr.links(word)
 
-
-           link_n_wishlist.write(word)
-           link_n_wishlist.write("\n")
+           big_list.append(word)
            num = 0
            for link in links:
                num += 1
-               link_n_wishlist.write(link)
-               link_n_wishlist.write("\n")
+               big_list.append(link)
                if num == 4:
                    break
           
-           link_n_wishlist.write("\n")
+       link_n_wishlist.write(','.join(big_list))
       
        link_n_wishlist.close()
 
@@ -355,24 +391,35 @@ class uploadWindow(Screen):
 
        link_n_wishlist = open("link_n_wishlist.txt", "w")
 
-
+       big_list = []
        for word in word_list:
            links = lr.links(word)
 
-
-           link_n_wishlist.write(word)
-           link_n_wishlist.write("\n")
+           big_list.append(word)
            num = 0
            for link in links:
                num += 1
-               link_n_wishlist.write(link)
-               link_n_wishlist.write("\n")
+               big_list.append(link)
                if num == 4:
                    break
           
-           link_n_wishlist.write("\n")
+       link_n_wishlist.write(','.join(big_list))
       
        link_n_wishlist.close()
+
+   def store_image(self):
+       filepath = open("link_n_wishlist.txt", "r")
+
+       for line in filepath:
+          combined_list = line.strip().split(',')
+
+       for i in range(5):
+          item_list = []
+          for j in range(4):
+             item_list.append(combined_list[i*5 + j])
+          item_string = [f"{item_list[0]}: {item_list[1]}, {item_list[2]}, {item_list[3]}"]
+          wishlist_db.addItems(global_var1[0], self.wishlist_name.text ,item_string)
+
 class cameraWindow(Screen):
    wishlist_input_pic = ObjectProperty(None)
    wishlist_name = ObjectProperty(None)
@@ -420,22 +467,19 @@ class cameraWindow(Screen):
 
        link_n_wishlist = open("link_n_wishlist.txt", "w")
 
-
+       big_list = []
        for word in word_list:
            links = lr.links(word)
 
-
-           link_n_wishlist.write(word)
-           link_n_wishlist.write("\n")
+           big_list.append(word)
            num = 0
            for link in links:
                num += 1
-               link_n_wishlist.write(link)
-               link_n_wishlist.write("\n")
+               big_list.append(link)
                if num == 4:
                    break
           
-           link_n_wishlist.write("\n")
+       link_n_wishlist.write(','.join(big_list))
       
        link_n_wishlist.close()
 
@@ -474,26 +518,34 @@ class cameraWindow(Screen):
 
        link_n_wishlist = open("link_n_wishlist.txt", "w")
 
-
+       big_list = []
        for word in word_list:
            links = lr.links(word)
 
-
-           link_n_wishlist.write(word)
-           link_n_wishlist.write("\n")
+           big_list.append(word)
            num = 0
            for link in links:
                num += 1
-               link_n_wishlist.write(link)
-               link_n_wishlist.write("\n")
+               big_list.append(link)
                if num == 4:
                    break
           
-           link_n_wishlist.write("\n")
+       link_n_wishlist.write(','.join(big_list))
       
        link_n_wishlist.close()
-  
+    
+   def store_image(self):
+       filepath = open("link_n_wishlist.txt", "r")
 
+       for line in filepath:
+          combined_list = line.strip().split(',')
+
+       for i in range(5):
+          item_list = []
+          for j in range(4):
+             item_list.append(combined_list[i * 5 + j])
+          item_string = [f"{item_list[0]}: {item_list[1]}, {item_list[2]}, {item_list[3]}"]
+          wishlist_db.addItems(global_var1[0], self.wishlist_name.text ,item_string)
 
  # class for managing screens
 class windowManager(ScreenManager):

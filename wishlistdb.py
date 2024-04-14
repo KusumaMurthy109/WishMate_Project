@@ -101,7 +101,7 @@ class WishlistDB:
            wishlist_col = self._wishlist_db.list_collection_names()
            for user in user_list:
                if (user in wishlist_col) and (user != username):
-                   f.write(f"{user}'s Wishlist ------\n")
+                   f.write(f"{user}'s Wishlist ------")
                    self.useridCol = self._wishlist_db[user]
                    if self.findUser(user):
 

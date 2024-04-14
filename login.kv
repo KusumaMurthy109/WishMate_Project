@@ -160,22 +160,30 @@
         Label: 
             id : info 
             size_hint : 0.8, 0.2
-            pos_hint : {"x" : 0.15, "top" : 0.8} 
+            pos_hint : {"center_x" : 0.5, "top" : 0.85} 
+            font_size: 50
             text : "Wish List Choices"
         TestButton: 
             text : "Create a WishList"
-            size_hint : 0.4, 0.1
-            pos_hint : {"x" : 0.33, "top" : 0.4} 
+            size_hint : 0.3, 0.1
+            pos_hint : {"center_x" : 0.5, "top" : 0.6} 
             on_release:  
                 app.root.current = 'createwish'
                 root.manager.transition.direction = "left"
         TestButton: 
             text : "View WishList Near You"
             size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.39, "top" : 0.2} 
+            pos_hint : {"center_x" : 0.5, "top" : 0.45} 
             on_release:  
                 app.root.current = 'wishlistnearme'
                 root.manager.transition.direction = "up"
+        TestButton: 
+            text : "Log Out"
+            size_hint : 0.2, 0.1
+            pos_hint : {"center_x" : 0.5, "top" : 0.2}
+            on_press : 
+                app.root.current = 'login'
+                root.manager.transition.direction = "right"
 
 <createWishWindow>: 
     info : info
@@ -193,7 +201,7 @@
             pos_hint : {"center_x": 0.5, "top": 0.6}
             on_press : 
                 app.root.current = 'wishlistwords'
-                root.manager.transition.direction = "right"
+                root.manager.transition.direction = "left"
         TestButton: 
             text : "Upload Picture"
             font_size: 50
@@ -201,7 +209,7 @@
             pos_hint : {"center_x": 0.5, "top": 0.45}
             on_press : 
                 app.root.current = 'uploadpic'
-                root.manager.transition.direction = "right"
+                root.manager.transition.direction = "left"
         TestButton: 
             text : "Take Picture"
             font_size: 50
@@ -209,87 +217,97 @@
             pos_hint : {"center_x": 0.5, "top": 0.3}
             on_press : 
                 app.root.current = 'takepic'
-                root.manager.transition.direction = "right"
+                root.manager.transition.direction = "left"
         TestButton: 
             text : "Back"
             font_size: 50
             size_hint : 0.3, 0.1
-            pos_hint : {"center_x": 0.5, "top": 0.2}
+            pos_hint : {"center_x": 0.5, "top": 0.15}
             on_press : 
                 app.root.current = 'wishlistdata'
-                root.manager.transition.direction = "left"
+                root.manager.transition.direction = "right"
 <wordWindow>:
     wishlist_input : wishlist_input
     wishlist_name : wishlist_name
     FloatLayout: 
         Label: 
+            text : "Enter Words And/Or Links Here: "
+            font_size: 50
+            size_hint: 0.5, 0.1
+            pos_hint: {"center_x": 0.5, "top": 0.9}
+        Label: 
             size_hint : 0.2, 0.1
-            pos_hint : {"x":0.25, "top":0.8} 
+            pos_hint : {"center_x": 0.5, "top":0.7} 
         TextInput: 
             id : wishlist_name 
             hint_text : "Enter Wish List Name: "
             multiline : False
             size_hint : 0.2, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.8}
+            pos_hint : {"center_x": 0.5, "top" : 0.7}
         Label: 
             size_hint : 0.2, 0.1
-            pos_hint : {"x":0.25, "top":0.7} 
+            pos_hint : {"center_x": 0.5, "top":0.55} 
         TextInput: 
             id : wishlist_input 
             hint_text : "Enter Wish List: "
             multiline : True
-            size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.25, "top" : 0.68}
+            size_hint : 0.2, 0.1
+            pos_hint : {"center_x": 0.5, "top" : 0.55}
         
-        Button: 
+        TestButton: 
             text : "Update"
-            size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.50, "top" : 0.25} 
+            size_hint : 0.2, 0.1
+            pos_hint : {"center_x": 0.5, "top" : 0.25} 
             on_press : 
                 root.update_wishlist() 
                 app.root.current = 'printwishlist'
-                root.manager.transition.direction = "right"
-        Button: 
+                root.manager.transition.direction = "left"
+        TestButton: 
             text : "Submit"
-            size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.50, "top" : 0.35} 
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.75, "top" : 0.25}
             on_press : 
                 root.save_wishlist() 
                 app.root.current = 'printwishlist'
-                root.manager.transition.direction = "right"
-        Button: 
+                root.manager.transition.direction = "left"
+        TestButton: 
             text : "Back"
-            size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.1, "top" : 0.1} 
+            size_hint : 0.2, 0.1
+            pos_hint : {"x" : 0.05, "top" : 0.25} 
             on_press : 
                 app.root.current = 'createwish'
-                root.manager.transition.direction = "left"
+                root.manager.transition.direction = "right"
 
 <uploadWindow>:
     wishlist_name : wishlist_name
     FloatLayout: 
         Label: 
+            text : "Upload an Image Here: "
+            font_size: 50
+            size_hint : 0.5, 0.1
+            pos_hint : {"center_x":0.5, "top":0.9} 
+        Label: 
             size_hint : 0.2, 0.1
-            pos_hint : {"x":0.25, "top":0.8} 
+            pos_hint : {"center_x":0.5, "top":0.7} 
         TextInput: 
             id : wishlist_name 
             hint_text : "Enter Wish List Name: "
             multiline : False
             size_hint : 0.2, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.8}
+            pos_hint : {"center_x" : 0.5, "top" : 0.7}
         Button: 
             text : "Upload Image (u)"
-            size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.50, "top" : 0.25} 
+            size_hint : 0.2, 0.1
+            pos_hint : {"center_x" : 0.50, "top" : 0.55} 
             on_press : 
                 root.option_selected('u')
         Button: 
             text : "Back"
-            size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.1, "top" : 0.1} 
+            size_hint : 0.2, 0.1
+            pos_hint : {"center_x" : 0.5, "top" : 0.25} 
             on_press : 
                 app.root.current = 'createwish'
-                root.manager.transition.direction = "left"
+                root.manager.transition.direction = "right"
 
     
 
@@ -297,27 +315,31 @@
     wishlist_name : wishlist_name
     FloatLayout: 
         Label: 
+            text : "Take a Picture to Upload Here: "
             size_hint : 0.2, 0.1
-            pos_hint : {"x":0.25, "top":0.8} 
+            pos_hint : {"center_x":0.5, "top":0.9} 
+        Label: 
+            size_hint : 0.2, 0.1
+            pos_hint : {"x":0.5, "top":0.7} 
         TextInput: 
             id : wishlist_name 
             hint_text : "Enter Wish List Name: "
             multiline : False
             size_hint : 0.2, 0.1
-            pos_hint : {"x" : 0.45, "top" : 0.8}
+            pos_hint : {"center_x" : 0.5, "top" : 0.7}
         Button: 
             text : "Capture Image (c)"
-            size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.50, "top" : 0.25} 
+            size_hint : 0.2, 0.1
+            pos_hint : {"center_x" : 0.50, "top" : 0.55}
             on_press : 
                 root.option_selected('c')
         Button: 
             text : "Back"
-            size_hint : 0.3, 0.1
-            pos_hint : {"x" : 0.1, "top" : 0.1} 
+            size_hint : 0.2, 0.1
+            pos_hint : {"center_x" : 0.5, "top" : 0.25}
             on_press : 
                 app.root.current = 'createwish'
-                root.manager.transition.direction = "left"
+                root.manager.transition.direction = "right"
 
 
 <printWishWindow>:
@@ -325,29 +347,31 @@
         Label:
             id : info
             size_hint : 0.8, 0.2
-            pos_hint : {"x" : 0.15, "top" : 0.95}
-            text : "Your Wishlists"
-        Button:
-            text : "TXT"
-            size_hint : 0.05, 0.05
-            pos_hint : {"x" : 0.1, "top" : 0.1}
-            on_press :
-                root.open_file()
-                root.manager.transition.direction = "left"
+            font_size: 50
+            pos_hint : {"center_x" : 0.5, "top" : 0.95}
+            text : "Click this Button to View Your Wishlists"
+        Button: 
+            text : "Back"
+            size_hint : 0.2, 0.1
+            pos_hint : {"center_x" : 0.5, "top" : 0.25}
+            on_press : 
+                app.root.current = 'createwish'
+                root.manager.transition.direction = "right"
 <othersWishWindow>:
     FloatLayout:
         Label:
             id : info
             size_hint : 0.8, 0.2
-            pos_hint : {"x" : 0.15, "top" : 0.95}
-            text : "Here are the Wishlists in Your Area"
-        Button:
-            text : "TXT"
-            size_hint : 0.05, 0.05
-            pos_hint : {"x" : 0.1, "top" : 0.1}
-            on_press :
-                root.open_file()
-                root.manager.transition.direction = "left"
+            font_size: 50
+            pos_hint : {"center_x" : 0.5, "top" : 0.95}
+            text : "Click the Button to Know The Wishlists in Your Area"
+        Button: 
+            text : "Back"
+            size_hint : 0.2, 0.1
+            pos_hint : {"center_x" : 0.5, "top" : 0.25}
+            on_press : 
+                app.root.current = 'createwish'
+                root.manager.transition.direction = "right"
 
   
 # GUI for pop up window 

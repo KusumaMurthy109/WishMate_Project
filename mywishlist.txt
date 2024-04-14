@@ -1,80 +1,29 @@
 
-Wish2:
-- can
-- food
-- yummy
-- pillow
-- water
-- dog
-- cat
-- testing
-- moregifts!
-- rat
-- cannedfood
-- yolo
-- pink
-- purple
-- blue
-- yes
-- green
-- fish
-- kusuma
-- gold
-- hot
-- yas
-- sugar
-- numbers
+WishList1:
+- Cat
+- Dog
+- onemore
+- cattt
+- dogg
 
 
-Wish3:
-- bake
-- water
-- water
-- yes
-- yes
+WishList2:
+- cats
+- dogs
+- Finger: https://maps.google.com/maps%3Fq%3DFinger%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111
+- /search%3Fq%3DFinger%26sca_esv%3D98cc110fba7c9a23%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111: https://en.wikipedia.org/wiki/Finger https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DFinger%26hl%3Den
+- Person: https://maps.google.com/maps%3Fq%3DPerson%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111
+- /search%3Fq%3DPerson%26sca_esv%3D98cc110fba7c9a23%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111: https://en.wikipedia.org/wiki/Person https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DPerson%26hl%3Den
+- Photography: https://maps.google.com/maps%3Fq%3DPhotography%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111
+- /search%3Fq%3DPhotography%26sca_esv%3D98cc110fba7c9a23%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111: https://en.wikipedia.org/wiki/Photography https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DPhotography%26hl%3Den
+- Portrait: https://maps.google.com/maps%3Fq%3DPortrait%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111
+- /search%3Fq%3DPortrait%26sca_esv%3D98cc110fba7c9a23%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111: https://en.wikipedia.org/wiki/Portrait https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DPortrait%26hl%3Den
+- Woman: https://maps.google.com/maps%3Fq%3DWoman%26um%3D1%26ie%3DUTF-8%26ved%3D1t:200713%26ictx%3D111
+- /search%3Fq%3DWoman%26sca_esv%3D98cc110fba7c9a23%26sca_upv%3D1%26ie%3DUTF-8%26tbm%3Dshop%26source%3Dlnms%26ved%3D1t:200713%26ictx%3D111: https://en.wikipedia.org/wiki/Woman https://en.wikipedia.org/wiki/Woman https://accounts.google.com/ServiceLogin%3Fcontinue%3Dhttps://www.google.com/search%253Fq%253DWoman%26hl%3Den
 
 
-Wish4:
-- weird
-- love
-
-
-Wish5:
-- cat
-- dog
-- happy
-
-
-Wish7:
-- dog
-- cat
-
-
-Wish10:
-- blanket
-- new
-- bottle
-- dog
-- chips
-- chicken
-- something
-- yooooo
-- soup
-- phone
-- tree
-- flower
-- nope
-- hands
-- towel
-- nope
-- k
-- Flower
-- flower
-- soap
-- flower
-- flower
-- work
-- werwrerwerwe
-- flower
-- why
+New Wish List:
+- wishes
+- are
+- fun
 
