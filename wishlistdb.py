@@ -2,10 +2,8 @@ import pymongo
 
 
 class WishlistDB:
-   '''
-   Creates a WishlistDB class that connects to WishMate_Wishlists database.
-   '''
-
+   #Creates a WishlistDB class that connects to WishMate_Wishlists database.
+   
    def __init__(self):
        '''
        Define member variables.
@@ -42,18 +40,14 @@ class WishlistDB:
            self.useridCol.insert_one({"_id": new_wishlist})
 
    def addItems(self, username, existing_wishlist, items):
-      '''
-      Adds items to an existing wishlist.
-      '''
+       #Adds items to an existing wishlist.
        if self.findUser(username):
            self.useridCol = self._wishlist_db[username]
            self.useridCol.update_one({"_id": existing_wishlist},
                                    {"$push": {"Items": {"$each": items}}})
   
    def removeItem(self, username, existing_wishlist, item):
-      '''
-      Removes an item from an existing wishlist.
-      '''
+       #Removes an item from an existing wishlist.
        if self.findUser(username):
            self.useridCol = self._wishlist_db[username]
            self.useridCol.update_one({"_id": existing_wishlist},
@@ -61,9 +55,7 @@ class WishlistDB:
   
    #WishMate_Wishlists Database
    def showWishlist(self, username):
-      '''
-      Writes all user wishlists to a txt file.
-      '''
+       #Writes all user wishlists to a txt file.
        f = open("mywishlist.txt", "w")
 
 
@@ -85,9 +77,8 @@ class WishlistDB:
                f.write("\n")
 
    def wishlistNearMe(self, username):
-      '''
-      Writes all near by wishlists (by zipcode) to a txt file.
-      '''
+       #Writes all near by wishlists (by zipcode) to a txt file.
+
        #Searches database to find zipcode of user.
        file = "wishlistsnearme.txt"
        f = open(file, "w")
