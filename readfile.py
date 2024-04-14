@@ -1,4 +1,4 @@
-class ReadFile:
+class ReadFile: #reads into a file, such as .txt
     def read(self, file):
         file = open(file, 'r')
         list1 = []
