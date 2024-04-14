@@ -30,6 +30,8 @@ Wish3:
 - bake
 - water
 - water
+- yes
+- yes
 
 
 Wish4:

@@ -181,7 +181,8 @@ class createWishWindow(Screen):
 
 # This class is to view wishlists near the user.
 class othersWishWindow(Screen):
-   pass
+   def open_file(self):
+       wishlist_db.wishlistNearMe(global_var1[0])
 
 
 # This class is to view the wishlists of your profile.
@@ -192,10 +193,10 @@ class printWishWindow(Screen):
        current_y = 0.9  # Initial y-position adjusted to center vertically
        for line in open("mywishlist.txt", "r"):
            text = line.strip()
-           label = Label(text=text, font_size=30, size=(self.width * 0.8, label_height))
+           label = Label(text=text, font_size=30, size=(0.8, label_height))
            label.pos_hint = {"center_x": 0.5, "top": current_y}
            self.ids.info.add_widget(label)
-           current_y -= 0.1  # Adjust y-position for the next label based on label height
+           current_y -= 0.3  # Adjust y-position for the next label based on label height
 
 
 
@@ -307,9 +308,13 @@ class uploadWindow(Screen):
 
            link_n_wishlist.write(word)
            link_n_wishlist.write("\n")
+           num = 0
            for link in links:
+               num += 1
                link_n_wishlist.write(link)
                link_n_wishlist.write("\n")
+               if num == 4:
+                   break
           
            link_n_wishlist.write("\n")
       
@@ -357,9 +362,13 @@ class uploadWindow(Screen):
 
            link_n_wishlist.write(word)
            link_n_wishlist.write("\n")
+           num = 0
            for link in links:
+               num += 1
                link_n_wishlist.write(link)
                link_n_wishlist.write("\n")
+               if num == 4:
+                   break
           
            link_n_wishlist.write("\n")
       
@@ -418,9 +427,13 @@ class cameraWindow(Screen):
 
            link_n_wishlist.write(word)
            link_n_wishlist.write("\n")
+           num = 0
            for link in links:
+               num += 1
                link_n_wishlist.write(link)
                link_n_wishlist.write("\n")
+               if num == 4:
+                   break
           
            link_n_wishlist.write("\n")
       
@@ -468,9 +481,13 @@ class cameraWindow(Screen):
 
            link_n_wishlist.write(word)
            link_n_wishlist.write("\n")
+           num = 0
            for link in links:
+               num += 1
                link_n_wishlist.write(link)
                link_n_wishlist.write("\n")
+               if num == 4:
+                   break
           
            link_n_wishlist.write("\n")
       

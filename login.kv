@@ -210,13 +210,13 @@
             on_press : 
                 app.root.current = 'takepic'
                 root.manager.transition.direction = "right"
-        #TestButton: 
-        #    text : "Back"
-        #    font_size: 50
-        #    size_hint : 0.3, 0.1
-        #    pos_hint : {"center_x": 0.5, "top": 0.3}
-        #    on_press : 
-        #        app.root.current = 'wishlistdata'
+        TestButton: 
+            text : "Back"
+            font_size: 50
+            size_hint : 0.3, 0.1
+            pos_hint : {"center_x": 0.5, "top": 0.2}
+            on_press : 
+                app.root.current = 'wishlistdata'
                 root.manager.transition.direction = "left"
 <wordWindow>:
     wishlist_input : wishlist_input
@@ -319,13 +319,6 @@
                 app.root.current = 'createwish'
                 root.manager.transition.direction = "left"
 
-<othersWishWindow>:
-    FloatLayout: 
-        Label: 
-            id : info 
-            size_hint : 0.8, 0.2
-            pos_hint : {"x" : 0.15, "top" : 0.95} 
-            text : "Wishlists Near You"
 
 <printWishWindow>:
     FloatLayout:
@@ -334,6 +327,20 @@
             size_hint : 0.8, 0.2
             pos_hint : {"x" : 0.15, "top" : 0.95}
             text : "Your Wishlists"
+        Button:
+            text : "TXT"
+            size_hint : 0.05, 0.05
+            pos_hint : {"x" : 0.1, "top" : 0.1}
+            on_press :
+                root.open_file()
+                root.manager.transition.direction = "left"
+<othersWishWindow>:
+    FloatLayout:
+        Label:
+            id : info
+            size_hint : 0.8, 0.2
+            pos_hint : {"x" : 0.15, "top" : 0.95}
+            text : "Here are the Wishlists in Your Area"
         Button:
             text : "TXT"
             size_hint : 0.05, 0.05
