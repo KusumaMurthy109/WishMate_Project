@@ -2,7 +2,9 @@ import pymongo
 
 
 class WishlistDB:
-
+   '''
+   Creates a WishlistDB class that connects to WishMate_Wishlists database.
+   '''
 
    def __init__(self):
        '''
@@ -17,7 +19,7 @@ class WishlistDB:
   
    def findUser(self, username):
        '''
-       Validates that user has a collection in the wishlist database.
+       Validates that user has a collection in the wishlist database. Returns True if user is found.
        '''
        collection = self._wishlist_db.get_collection(username)
        if collection is not None:
@@ -39,16 +41,19 @@ class WishlistDB:
            self._wishlist_db.create_collection(username)
            self.useridCol.insert_one({"_id": new_wishlist})
 
-
-   #WishMate_Wishlists Database
    def addItems(self, username, existing_wishlist, items):
+      '''
+      Adds items to an existing wishlist.
+      '''
        if self.findUser(username):
            self.useridCol = self._wishlist_db[username]
            self.useridCol.update_one({"_id": existing_wishlist},
                                    {"$push": {"Items": {"$each": items}}})
   
-   #WishMate_Wishlists Database
    def removeItem(self, username, existing_wishlist, item):
+      '''
+      Removes an item from an existing wishlist.
+      '''
        if self.findUser(username):
            self.useridCol = self._wishlist_db[username]
            self.useridCol.update_one({"_id": existing_wishlist},
@@ -56,6 +61,9 @@ class WishlistDB:
   
    #WishMate_Wishlists Database
    def showWishlist(self, username):
+      '''
+      Writes all user wishlists to a txt file.
+      '''
        f = open("mywishlist.txt", "w")
 
 
@@ -76,9 +84,10 @@ class WishlistDB:
                        f.write(f"- {item}\n")
                f.write("\n")
 
-
-   #WishMate_Wishlists Database
    def wishlistNearMe(self, username):
+      '''
+      Writes all near by wishlists (by zipcode) to a txt file.
+      '''
        #Searches database to find zipcode of user.
        file = "wishlistsnearme.txt"
        f = open(file, "w")
