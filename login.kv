@@ -2,7 +2,7 @@
 #:import hex kivy.utils.get_color_from_hex
 
 <TestButton@Button>:
-    font_size: 20
+    font_size: 50
     background_color: 0, 0, 0, 0
     background_normal: ""
     canvas.before:
@@ -54,6 +54,7 @@
             password: True
         TestButton: 
             id : button
+            font_size: 20
             text : "Show"
             size_hint : 0.04, 0.04
             pos_hint : {"x" : 0.6, "center_y" : 0.575}
@@ -165,14 +166,14 @@
             text : "Wish List Choices"
         TestButton: 
             text : "Create a WishList"
-            size_hint : 0.3, 0.1
+            size_hint : 0.35, 0.1
             pos_hint : {"center_x" : 0.5, "top" : 0.6} 
             on_release:  
                 app.root.current = 'createwish'
                 root.manager.transition.direction = "left"
         TestButton: 
             text : "View WishList Near You"
-            size_hint : 0.3, 0.1
+            size_hint : 0.35, 0.1
             pos_hint : {"center_x" : 0.5, "top" : 0.45} 
             on_release:  
                 app.root.current = 'wishlistnearme'
@@ -297,13 +298,15 @@
             pos_hint : {"center_x" : 0.5, "top" : 0.7}
         Button: 
             text : "Upload Image (u)"
-            size_hint : 0.2, 0.1
+            font_size: 50
+            size_hint : 0.25, 0.1
             pos_hint : {"center_x" : 0.50, "top" : 0.55} 
             on_press : 
                 root.option_selected('u')
         Button: 
             text : "Back"
-            size_hint : 0.2, 0.1
+            font_size: 50
+            size_hint : 0.25, 0.1
             pos_hint : {"center_x" : 0.5, "top" : 0.25} 
             on_press : 
                 app.root.current = 'createwish'
@@ -329,13 +332,15 @@
             pos_hint : {"center_x" : 0.5, "top" : 0.7}
         Button: 
             text : "Capture Image (c)"
-            size_hint : 0.2, 0.1
+            font_size: 50
+            size_hint : 0.25, 0.1
             pos_hint : {"center_x" : 0.50, "top" : 0.55}
             on_press : 
                 root.option_selected('c')
         Button: 
             text : "Back"
-            size_hint : 0.2, 0.1
+            font_size: 50
+            size_hint : 0.25, 0.1
             pos_hint : {"center_x" : 0.5, "top" : 0.25}
             on_press : 
                 app.root.current = 'createwish'
@@ -352,6 +357,7 @@
             text : "Click this Button to View Your Wishlists"
         Button: 
             text : "Back"
+            font_size: 50
             size_hint : 0.1, 0.1
             pos_hint : {"x" : 0.85, "top" : 0.15}
             on_press : 
@@ -367,6 +373,7 @@
             text : "Click the Button to Know The Wishlists in Your Area"
         Button: 
             text : "Back"
+            font_size: 50
             size_hint : 0.1, 0.1
             pos_hint : {"x" : 0.85, "top" : 0.15}
             on_press : 
