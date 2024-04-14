@@ -1,4 +1,4 @@
-# Import Modules
+# Import Necessary Modules
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -29,16 +29,16 @@ import pymongo
 from profiledb import ProfileDB
 from wishlistdb import WishlistDB
 
-
+# Instances to call to MongoDB and store wishlist and profile.
 profile_db = ProfileDB()
 wishlist_db = WishlistDB()
 
 
-# class to call the popup function
+# Class to call the popup function
 class PopupWindow(Widget):
    def btn(self):
        popContent()
- # class to build GUI for a popup window
+ # Class to build GUI for a popup window
 class P(FloatLayout):
    pass
  # function that displays the content
@@ -48,7 +48,7 @@ def popContent():
                   size_hint = (None, None), size = (300, 300), background_color = "#D587F7")
    window.open()
  # class to accept user info and validate it
-global_var1 = []
+global_var1 = [] # Store the user that has logged in.
 class loginWindow(Screen):
    email = ObjectProperty(None)
    pwd = ObjectProperty(None)
@@ -69,7 +69,7 @@ class loginWindow(Screen):
             # reset TextInput widget
            self.email.text = ""
            self.pwd.text = ""
-          
+   # Hide and Show Password       
    def togglevisibility(self):
        if self.pwd.password == True:
            self.pwd.password = False
@@ -80,10 +80,10 @@ class loginWindow(Screen):
 
 
  
-# class to accept sign up info  
+# Class to accept sign up info  
 class signupWindow(Screen):
 
-
+   # Information for Profile for MongoDB
    first_name2 = ObjectProperty(None)
    last_name2 = ObjectProperty(None)
    email = ObjectProperty(None)
@@ -97,7 +97,7 @@ class signupWindow(Screen):
        #Adds profile to database
        profile_db.createAccount(self.email.text, self.pwd.text, self.first_name2.text, self.last_name2.text, self.zipcode.text)
 
-
+      # If the email is new and is not a blank space, then we can add it.
        if self.email.text != "":
            if self.email.text not in users['Email'].unique():
                 # if email does not exist already then append to the csv file
@@ -112,30 +112,15 @@ class signupWindow(Screen):
        else:
            # if values are empty or invalid show pop up
            popContent()
+# Gives options of creating or viewing wish lists
 class wishListWindow(Screen):
    pass
-   '''
-   def wishlist(self):
-       window = GridLayout(cols=1)
-       list_of_gifts = Label(text="Enter wishlist: ")
-       window.add_widget(list_of_gifts)
-       user_input = TextInput(multiline=True)
-       window.add_widget(user_input)
-       button = Button(text="Next")
-       button.bind(on_press=self.callback)
-       window.add_widget(button)
-       self.add_widget(window)
-       return
-   def callback(self, instance):
-       self.list_of_gifts.text = "Thank you for inputting your wish list!"
-       wish_list = [self.user_input.text]
-       print(wish_list)
-       #return wish_list   
-   '''
+# Gives options on how to create wishlist (upload, type, etc.)
 class createWishWindow(Screen):
    wishlist_input = ObjectProperty(None)
    wishlist_input_file = ObjectProperty(None)
    wishlist_name = ObjectProperty(None)
+   # Save new wishlist when they click submit.
    def save_wishlist(self):
 
 
@@ -168,7 +153,7 @@ class createWishWindow(Screen):
        self.wishlist_input.text = ""
        self.wishlist_name.text = ""
 
-
+   # Feed in the new wishlist inputs for when they click on update.
    def update_wishlist(self):
        user_email = global_var1[0]
        wishlist = self.wishlist_input.text
@@ -198,7 +183,7 @@ class othersWishWindow(Screen):
         self.layout.add_widget(self.label_container)  # Add the label container to the layout
 
         self.add_widget(self.layout)
-
+   # Print the information through a button to the Kivy App.
     def load_data(self, instance):
         wishlist_db.wishlistNearMe(global_var1[0])
         # Clear previous labels
@@ -235,7 +220,7 @@ class printWishWindow(Screen):
         self.layout.add_widget(self.label_container)  # Add the label container to the layout
 
         self.add_widget(self.layout)
-
+   # Print the information through a button to the Kivy App.
     def load_data(self, instance):
         wishlist_db.showWishlist(global_var1[0])
         # Clear previous labels
@@ -259,13 +244,13 @@ class printWishWindow(Screen):
 
 
 
-# class to display validation result
+# Class to display validation result
 class logDataWindow(Screen):
    pass
 
 
 
-
+# Class to type in the wishlist to create or update.
 class wordWindow(Screen):
    wishlist_input = ObjectProperty(None)
    wishlist_name = ObjectProperty(None)
@@ -285,7 +270,7 @@ class wordWindow(Screen):
        self.wishlist_input.text = ""
        self.wishlist_name.text = ""
 
-
+   # Updates the wishlist to MongoDB.
    def update_wishlist(self):
        user_email = global_var1[0]
        wishlist = self.wishlist_input.text
@@ -294,7 +279,7 @@ class wordWindow(Screen):
        # Clear the wishlist input after saving
        self.wishlist_input.text = ""
        self.wishlist_name.text = ""
-       
+# Class to upload a picture to Kivy App and MongoDB.       
 class uploadWindow(Screen):
    wishlist_name = ObjectProperty(None)
    def option_selected(self, option):
@@ -303,7 +288,7 @@ class uploadWindow(Screen):
        elif option == 'u':
            self.upload_image()
 
-
+   # Take a picture.
    def capture_image(self):
        self.r = Rekognition()
        r = self.r
@@ -369,7 +354,7 @@ class uploadWindow(Screen):
 
           wishlist_db.addItems(global_var1[0], self.wishlist_name.text, item)
 
-
+   # Upload a picture and store the links and the labels.
    def upload_image(self):
        self.r = Rekognition()
        # Your upload logic here
@@ -430,7 +415,7 @@ class uploadWindow(Screen):
           item = [item_string]
 
           wishlist_db.addItems(global_var1[0], self.wishlist_name.text, item)
-
+# Class to take a picture to upload to MongoDB.
 class cameraWindow(Screen):
    wishlist_input_pic = ObjectProperty(None)
    wishlist_name = ObjectProperty(None)
@@ -441,7 +426,7 @@ class cameraWindow(Screen):
        elif option == 'u':
            self.upload_image()
 
-
+   # Take a picture and store labels and links to MongoDB.
    def capture_image(self):
        self.r = Rekognition()
        # Your capture logic here
@@ -509,7 +494,7 @@ class cameraWindow(Screen):
           wishlist_db.addItems(global_var1[0], self.wishlist_name.text, item)
     
 
-
+   # Upload picture and the links and labels to MongoDB.
    def upload_image(self):
        self.r = Rekognition()
        # Your upload logic here
@@ -575,7 +560,7 @@ class cameraWindow(Screen):
 
           wishlist_db.addItems(global_var1[0], self.wishlist_name.text, item) 
     
- # class for managing screens
+ # Class for managing screens
 class windowManager(ScreenManager):
    pass
 
@@ -587,8 +572,6 @@ class windowManager(ScreenManager):
  # kv file
 kv = Builder.load_file('login.kv')
 sm = windowManager()
- # reading all the data stored
-users=pd.read_csv('login.csv')
  # adding screens
 sm.add_widget(loginWindow(name='login'))
 sm.add_widget(signupWindow(name='signup'))
@@ -602,7 +585,7 @@ sm.add_widget(othersWishWindow(name='wishlistnearme'))
 sm.add_widget(wordWindow(name='wishlistwords'))
 sm.add_widget(uploadWindow(name='uploadpic'))
 sm.add_widget(cameraWindow(name='takepic'))
- # class that builds gui
+ # Class that builds gui
 class loginMain(App):
    def build(self):
        Window.clearcolor = (60/255,54/255,76/255,1)
